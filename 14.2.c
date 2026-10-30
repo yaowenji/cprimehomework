@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct month
+{
+    char m_name[10];
+    int day;
+    int num;
+}months[12] = 
+{
+    {"january", 31, 1},
+    {"february", 28, 2},
+    {"march", 31, 3},
+    {"april", 30, 4},
+    {"may", 31, 5},
+    {"june", 30, 6},
+    {"july", 31, 7},
+    {"august", 31, 8},
+    {"september", 30, 9},
+    {"october", 31, 10},
+    {"november", 30, 11},
+    {"december", 31, 12}
+};
+
+int sumdays(int month, int day)
+{
+    int sum = 0;
+    for(int i = 0 ; i < 12 ; i++)
+    {
+        if(month == months[i].num)
+        {
+            sum += day;
+            return sum;
+        }else
+        {
+            sum += months[i].day;
+        }
+    }
+
+    return -1;
+}
+
+int main()
+{
+    int month, day;
+    printf("请输入月数与当月所过天数：\n");
+    scanf("%d%d", &month, &day);
+    if(sumdays(month, day) != -1)
+    {
+        printf("到%d月%d日总共的天数为%d\n", month, day, sumdays(month, day));
+    }else
+    {
+        printf("输入有误\n");
+    }
+    return 0;
+}
